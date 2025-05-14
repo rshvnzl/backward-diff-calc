@@ -1,0 +1,51 @@
+/* Background image (loaded dynamically from base64 in app.py) */
+.stApp {
+    background-repeat: no-repeat;
+    background-attachment: fixed;
+    background-position: center top;
+    background-size: cover;
+    /* or 'auto' if you want original size */
+}
+
+/* Input field styling */
+input[type="number"] {
+    background-color: pink;
+    color: black;
+    border: 1px solid rgb(6, 47, 55)s;
+    border-radius: 5px;
+    padding: 5px;
+}
+
+input[type="number"]:focus {
+    border-color: rgb(6, 47, 55);
+    outline: none;
+    background-color: #ffcda0;
+}
+
+/* Custom title section */
+.custom-title {
+    text-align: center;
+    margin-top: -30px;
+    margin-bottom: -10px;
+}
+
+.custom-title h1 {
+    font-size: 2.5em;
+    margin-bottom: 5px;
+    color: white;
+}
+
+.custom-title h3 {
+    font-size: 1.5em;
+    margin-top: -1.5em;
+    margin-bottom: 1em;
+    color: white;
+}
+
+div.stButton>button {
+    padding: 0.5em 2em !important;
+    font-size: 1.1em !important;
+    background-color: #25001c !important;
+    color: white !important;
+    border-radius: 10px !important;
+}
