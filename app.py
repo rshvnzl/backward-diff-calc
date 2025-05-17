@@ -5,19 +5,20 @@ import base64
 import os
 import matplotlib.pyplot as plt
 
-# Encode image to base64 for background injection
+
 def get_base64_image(image_path):
     with open(image_path, "rb") as img_file:
         return base64.b64encode(img_file.read()).decode()
 
-# Load local CSS styles
+
 def load_local_css(file_name):
     with open(file_name) as f:
         st.markdown(f"<style>{f.read()}</style>", unsafe_allow_html=True)
 
 st.set_page_config(page_title="Newton's Backward Difference Calculator", layout="centered")
 
-# Generate backward difference table
+
+# Backward Difference Table
 def backward_difference_table(y_values):
     n = len(y_values)
     table = [y_values.copy()]
@@ -26,15 +27,16 @@ def backward_difference_table(y_values):
         table.append(col)
     return table
 
-# First derivative approximation using backward difference formula
+# First Derivative Approximation
 def first_derivative(diffs, h):
     return (1/h) * (diffs[1][-1] + (1/2)*diffs[2][-1] + (1/3)*diffs[3][-1] + (1/4)*diffs[4][-1])
 
-# Second derivative approximation using backward difference formula
+# Second Derivative Approximation
 def second_derivative(diffs, h):
     return (1/(h**2)) * (diffs[2][-1] + diffs[3][-1] + (11/12)*diffs[4][-1])
 
-# Inject background image using base64
+
+# Background Image
 def inject_bg_image(base64_image):
     st.markdown(
         f"""
@@ -56,7 +58,7 @@ def main():
     inject_bg_image(img_base64)
     load_local_css("design.css")
 
-    # Custom-styled title section
+    #Title Section
     st.markdown("""
         <div class="custom-title">
             <h1>Newton's Backward Difference</h1>
@@ -64,6 +66,7 @@ def main():
         </div>
     """, unsafe_allow_html=True)
 
+    # Calculator Section
     st.markdown('<h4 style="font-size: 1.2em; margin-bottom: -2.5em;">Number of data points</h4>', unsafe_allow_html=True)
     num_points = st.number_input("", min_value=5, value=5, step=1, key="num_points")
 
@@ -89,7 +92,7 @@ def main():
     if st.button("Calculate"):
         st.markdown("<div style='margin-bottom: 2em;'></div>", unsafe_allow_html=True)
 
-        # Ensure target_x is the last xₙ
+        # target_x is the last xₙ
         if target_x not in x_values:
             st.error("The value must be the last xₙ (i.e., the highest x).")
             return
@@ -101,12 +104,12 @@ def main():
             st.error("Need at least 5 values ending at the selected xₙ.")
             return
 
-        # Extract subset ending at target x for backward difference
+        # Extract Subset Ending at target x 
         trimmed_y = y_values[xn_index - 4: xn_index + 1]
         trimmed_x = x_values[xn_index - 4: xn_index + 1]
         diffs = backward_difference_table(trimmed_y)
 
-        # Pad difference columns to align them in a DataFrame
+        # Pad Difference Columns to Align Them in a DataFrame
         max_len = len(diffs[0])
         padded_diffs = []
         for i in range(len(diffs)):

@@ -1,13 +1,13 @@
-/* Background image (loaded dynamically from base64 in app.py) */
+
 .stApp {
     background-repeat: no-repeat;
     background-attachment: fixed;
     background-position: center top;
     background-size: cover;
-    /* or 'auto' if you want original size */
+    
 }
 
-/* Input field styling */
+/* Input fields */
 input[type="number"] {
     background-color: pink;
     color: black;
@@ -22,7 +22,7 @@ input[type="number"]:focus {
     background-color: #ffcda0;
 }
 
-/* Custom title section */
+/* Title Section */
 .custom-title {
     text-align: center;
     margin-top: -30px;
