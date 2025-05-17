@@ -92,7 +92,7 @@ def main():
         sub_i = ''.join(subscript_digits[int(d)] for d in str(i))
         cols = st.columns(2)
         with cols[0]:
-            x = st.number_input(f"x{sub_i}", key=f"x_{i}", format="%.4f")
+            x = st.number_input(f"x{sub_i}", key=f"x_{i}", format="%.2f")
         with cols[1]:
             y = st.number_input(f"f(x{sub_i})", key=f"y_{i}", format="%.4f")
         x_values.append(x)
@@ -102,7 +102,7 @@ def main():
         '<h4 style="font-size: 1.2em; margin-bottom: -2.5em;">At which x do you want to evaluate f′(x) and f″(x)?</h4>',
         unsafe_allow_html=True,
     )
-    target_x = st.number_input("", key="target_x", format="%.4f")
+    target_x = st.number_input("", key="target_x", format="%.2f")
 
     if st.button("Calculate"):
         if target_x not in x_values:
@@ -153,15 +153,15 @@ def main():
             r"f'(x_n) = \frac{1}{h} \left( \nabla y_n + \frac{1}{2} \nabla^2 y_n + \frac{1}{3} \nabla^3 y_n + \frac{1}{4} \nabla^4 y_n \right)"
         )
         st.latex(
-            fr"f'(x_n) = \frac{{1}}{{{h:.4f}}} \left( {diffs[1][-1]:.6f} + \frac{{1}}{{2}} \cdot {diffs[2][-1]:.6f} + \frac{{1}}{{3}} \cdot {diffs[3][-1]:.6f} + \frac{{1}}{{4}} \cdot {diffs[4][-1]:.6f} \right)"
+            fr"f'(x_n) = \frac{{1}}{{{h:.4f}}} \left( {diffs[1][-1]:.4f} + \frac{{1}}{{2}} \cdot {diffs[2][-1]:.4f} + \frac{{1}}{{3}} \cdot {diffs[3][-1]:.4f} + \frac{{1}}{{4}} \cdot {diffs[4][-1]:.4f} \right)"
         )
-        st.latex(fr"f'(x_n) = {f_prime:.6f}")
+        st.latex(fr"f'(x_n) = {f_prime:.4f}")
 
         st.latex(r"f''(x_n) = \frac{1}{h^2} \left( \nabla^2 y_n + \nabla^3 y_n + \frac{11}{12} \nabla^4 y_n \right)")
         st.latex(
-            fr"f''(x_n) = \frac{{1}}{{{h ** 2:.6f}}} \left( {diffs[2][-1]:.6f} + {diffs[3][-1]:.6f} + \frac{{11}}{{12}} \cdot {diffs[4][-1]:.6f} \right)"
+            fr"f''(x_n) = \frac{{1}}{{{h ** 2:.4f}}} \left( {diffs[2][-1]:.4f} + {diffs[3][-1]:.4f} + \frac{{11}}{{12}} \cdot {diffs[4][-1]:.4f} \right)"
         )
-        st.latex(fr"f''(x_n) = {f_double_prime:.6f}")
+        st.latex(fr"f''(x_n) = {f_double_prime:.4f}")
 
         st.subheader("Final Results")
         st.latex(fr"f'({target_x:.4f}) \approx \boxed{{{f_prime:.4f}}}")
